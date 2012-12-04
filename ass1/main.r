@@ -2,7 +2,7 @@ main = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   rows = nrow(data)
 
-  for (k in 1:10) {
+  for (k in 1:1) {
     res = smartKnn(data, k, rows)
     cat(sprintf("K=%d, R=%.3f\n", k, res))
   }
@@ -17,11 +17,7 @@ smartKnn = function(data, k = 1, rows = nrow(data), fraction = 0.25) {
   result = c()
   for (i in 1:length(ans)) {
     o = as.character(data[testIndexes,1][i])
-    if(is.null(result[o])){ 
-      result[o] = 0 
-    }
-
-    if(is.na(result[o])){
+    if(is.null(result[o]) || is.na(result[o])){
       result[o] = 0 
     }
 
