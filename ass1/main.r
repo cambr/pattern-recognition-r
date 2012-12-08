@@ -8,14 +8,39 @@ main = function() {
   }
 }
 
-#
-#
-#
-#
-#
-#
-#
-#
+
+
+
+####
+
+main3 = function() {
+  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/pizza.txt", header = TRUE)
+  fraction = 0.25
+  rows = nrow(data)
+  indexes = 1 : rows
+  testIndexes = sample(indexes, fraction * rows)
+  trainingIndexes = indexes[-testIndexes]
+
+  result = multinom(formula = pizza ~ ., data = data[trainingIndexes,])
+  model = exp(coef(result)) # Convert to matrix
+  
+  for (irowTest in 1:nrow(data[testIndexes,-1])) {
+    bestChar = NULL
+    lowestValue = -1
+    for (irowModel in 1:nrow(model)) {
+      l = p(l(model[irowModel,], data[testIndexes,-1][irowTest,]))
+      if(l > lowestValue){
+        bestChar = names(model[,1][irowModel])
+        lowestValue = l
+      }
+    }
+
+    cat(sprintf("l=%.3f, could it be %s? it should be %s\n", lowestValue, bestChar, data[testIndexes, 1][irowTest]))
+  }
+
+}
+
+####
 main2 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   fraction = 0.25
@@ -46,9 +71,6 @@ main2 = function() {
 # Den korta listan = v2
 #
 l = function (v1, v2) {
-  print(v1)
-  print(v2)
-  print("------")
   v1[1] + sum(v1[-1] * v2)
 }
 
