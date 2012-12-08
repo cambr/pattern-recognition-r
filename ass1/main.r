@@ -1,5 +1,5 @@
 main = function() {
-  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  data = read.csv("data.txt", header = TRUE)
   rows = nrow(data)
 
   for (k in 1:1) {
@@ -17,28 +17,29 @@ main = function() {
 #
 #
 main2 = function() {
-  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  data = read.csv("data.txt", header = TRUE)
   fraction = 0.25
   rows = nrow(data)
   indexes = 1 : rows
   testIndexes = sample(indexes, fraction * rows)
   trainingIndexes = indexes[-testIndexes]
 
-  result = multinom(formula = lettr ~ ., data = data[trainingIndexes,])
+  result = lda(formula = lettr ~ ., data = data[trainingIndexes,], maxit = 200)
   model = exp(coef(result)) # Convert to matrix
   
   for (irowTest in 1:nrow(data[testIndexes,-1])) {
     bestChar = NULL
-    lowestValue = -1
+    highestValue = -1
     for (irowModel in 1:nrow(model)) {
-      l = l(model[irowModel,], data[testIndexes,-1][irowTest,])
-      if(l > lowestValue){
+      p = p(l(model[irowModel,], data[testIndexes,-1][irowTest,]))
+     
+      if(p > highestValue){
         bestChar = names(model[,1][irowModel])
-        lowestValue = l
+        highestValue = p
       }
     }
 
-    cat(sprintf("l=%.3f, could it be %s? it should be %s\n", lowestValue, bestChar, data[testIndexes, 1][irowTest]))
+    cat(sprintf("p=%.3f, could it be %s? it should be %s\n", highestValue, bestChar, data[testIndexes, 1][irowTest]))
   }
 }
 
@@ -46,10 +47,9 @@ main2 = function() {
 # Den korta listan = v2
 #
 l = function (v1, v2) {
-  print(v1)
-  print(v2)
-  print("------")
-  v1[1] + sum(v1[-1] * v2)
+  v= v1[1] + sum(v1[-1] * v2)
+  print(v)
+  v
 }
 
 p = function (l) {
