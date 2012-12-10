@@ -1,5 +1,10 @@
-main = function() {
-  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+library(MASS)
+library(nnet)
+library(e1071)
+library(class)
+
+main1 = function() {
+  data = read.csv("data.txt", header = TRUE)
   rows = nrow(data)
 
   for (k in 1:1) {
@@ -8,75 +13,56 @@ main = function() {
   }
 }
 
-
-
-
-####
-
-main3 = function() {
-  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/pizza.txt", header = TRUE)
-  fraction = 0.25
-  rows = nrow(data)
-  indexes = 1 : rows
-  testIndexes = sample(indexes, fraction * rows)
-  trainingIndexes = indexes[-testIndexes]
-
-  result = multinom(formula = pizza ~ ., data = data[trainingIndexes,])
-  model = exp(coef(result)) # Convert to matrix
-  
-  for (irowTest in 1:nrow(data[testIndexes,-1])) {
-    bestChar = NULL
-    lowestValue = -1
-    for (irowModel in 1:nrow(model)) {
-      l = p(l(model[irowModel,], data[testIndexes,-1][irowTest,]))
-      if(l > lowestValue){
-        bestChar = names(model[,1][irowModel])
-        lowestValue = l
-      }
-    }
-
-    cat(sprintf("l=%.3f, could it be %s? it should be %s\n", lowestValue, bestChar, data[testIndexes, 1][irowTest]))
-  }
-
-}
-
-####
 main2 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
-  fraction = 0.25
-  rows = nrow(data)
+  blocks = createDataBlocks(data, nrow(data))
+  model = multinom(formula = lettr ~ ., data = blocks$training, maxit = 200)
+  result = predict(model, blocks$testing, interval = "predict")
+  table(blocks$testing[,1], result)
+}
+
+main4 = function() {
+  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  blocks = createDataBlocks(data, nrow(data))
+  model = svm(formula = lettr ~ ., data = blocks$training)
+  result = predict(model, blocks$testing, interval = "predict")
+  table(blocks$testing[,1], result)
+}
+
+main3 = function() {
+  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  blocks = createDataBlocks(data, nrow(data))
+  model = lda(formula = lettr ~ ., data = blocks$training)
+  result = predict(model, blocks$testing)$class
+  table(blocks$testing[,1], result)
+  # printResult(result, blocks$testing)
+}
+
+main5 = function() {
+  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  blocks = createDataBlocks(data, nrow(data))
+  for (i in 10:22) {
+    model = nnet(formula = lettr ~ ., data = blocks$training, size = i)
+    result = predict(model, blocks$testing, type = "class")
+    cat(sprintf("=====> %d\n", i))
+    print(table(blocks$testing[,1], result))
+  }
+}
+
+createDataBlocks = function(data, rows = nrow(data), fraction = 0.25){
   indexes = 1 : rows
   testIndexes = sample(indexes, fraction * rows)
   trainingIndexes = indexes[-testIndexes]
 
-  result = multinom(formula = lettr ~ ., data = data[trainingIndexes,])
-  model = exp(coef(result)) # Convert to matrix
-  
-  for (irowTest in 1:nrow(data[testIndexes,-1])) {
-    bestChar = NULL
-    lowestValue = -1
-    for (irowModel in 1:nrow(model)) {
-      l = l(model[irowModel,], data[testIndexes,-1][irowTest,])
-      if(l > lowestValue){
-        bestChar = names(model[,1][irowModel])
-        lowestValue = l
-      }
-    }
+  return(list(testing=data[testIndexes,], training=data[trainingIndexes,]))
+}
 
-    cat(sprintf("l=%.3f, could it be %s? it should be %s\n", lowestValue, bestChar, data[testIndexes, 1][irowTest]))
+printResult = function(result, testData) {
+  for (i in 1:length(result)) {
+    predict = result[i]
+    should = testData[,1][i]
+    cat(sprintf("could it be %s? it should be %s\n", predict, should))
   }
-}
-
-#
-# Den korta listan = v2
-#
-l = function (v1, v2) {
-  v1[1] + sum(v1[-1] * v2)
-}
-
-p = function (l) {
-  e = exp(1)
-  return(e^l / (e^l + 1))
 }
 
 smartKnn = function(data, k = 1, rows = nrow(data), fraction = 0.25) {
