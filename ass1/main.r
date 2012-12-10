@@ -49,6 +49,14 @@ main5 = function() {
   }
 }
 
+main6 = function(){
+  data = read.csv("data.txt", header = T)
+  blocks = createDataBlocks(data, nrow(data))
+  model = qda(formula = lettr ~ ., data = blocks$training)
+  result = predict(model, blocks$testing)$class
+  table(blocks$testing[,1], result)
+}
+
 createDataBlocks = function(data, rows = nrow(data), fraction = 0.25){
   indexes = 1 : rows
   testIndexes = sample(indexes, fraction * rows)
