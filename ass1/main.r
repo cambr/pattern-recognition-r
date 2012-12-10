@@ -4,12 +4,12 @@ library(e1071)
 library(class)
 
 main1 = function() {
-  data = read.csv("data.txt", header = TRUE)
-  rows = nrow(data)
-
+  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  blocks = createDataBlocks(data, nrow(data))
   for (k in 1:1) {
-    res = smartKnn(data, k, rows)
-    cat(sprintf("K=%d, R=%.3f\n", k, res))
+    model = knn(blocks$training[,-1], blocks$testing[,-1], blocks$training[,1], k)
+    calcResult(blocks, model)
+    print(table(blocks$testing[,1], model))
   }
 }
 
@@ -18,6 +18,7 @@ main2 = function() {
   blocks = createDataBlocks(data, nrow(data))
   model = multinom(formula = lettr ~ ., data = blocks$training, maxit = 200)
   result = predict(model, blocks$testing, interval = "predict")
+  calcResult(blocks, result)
   table(blocks$testing[,1], result)
 }
 
@@ -34,27 +35,31 @@ main3 = function() {
   blocks = createDataBlocks(data, nrow(data))
   model = lda(formula = lettr ~ ., data = blocks$training)
   result = predict(model, blocks$testing)$class
-  table(blocks$testing[,1], result)
-  # printResult(result, blocks$testing)
+  print(table(blocks$testing[,1], result))
+  print(calcResult(blocks, result))
 }
 
 main5 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
   for (i in 10:22) {
-    model = nnet(formula = lettr ~ ., data = blocks$training, size = i)
+    model = nnet(formula = lettr ~ ., data = blocks$training, size = i, decay = i)
     result = predict(model, blocks$testing, type = "class")
+    print("------------")
+    print(i)
+    print(calcResult(blocks, result))
     cat(sprintf("=====> %d\n", i))
     print(table(blocks$testing[,1], result))
   }
 }
 
 main6 = function(){
-  data = read.csv("data.txt", header = T)
+  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
   model = qda(formula = lettr ~ ., data = blocks$training)
   result = predict(model, blocks$testing)$class
-  table(blocks$testing[,1], result)
+  print(table(blocks$testing[,1], result))
+  print(calcResult(blocks, result))
 }
 
 createDataBlocks = function(data, rows = nrow(data), fraction = 0.25){
@@ -73,20 +78,15 @@ printResult = function(result, testData) {
   }
 }
 
-smartKnn = function(data, k = 1, rows = nrow(data), fraction = 0.25) {
-  indexes = 1 : rows
-  testIndexes = sample(indexes, fraction * rows)
-  trainingIndexes = indexes[-testIndexes]
-  ans = knn(data[trainingIndexes,-1], data[testIndexes,-1], data[trainingIndexes, 1], k)
-
+calcResult = function(blocks, model) {
   result = c()
-  for (i in 1:length(ans)) {
-    o = as.character(data[testIndexes,1][i])
+  for (i in 1:length(model)) {
+    o = as.character(model[i])
     if(is.null(result[o]) || is.na(result[o])){
-      result[o] = 0 
+      result[o] = 0
     }
 
-    if(o == ans[i]){
+    if(o == blocks$testing[i,1]){
       result[o] = result[o] + 1
     }
   }
@@ -98,7 +98,7 @@ smartKnn = function(data, k = 1, rows = nrow(data), fraction = 0.25) {
 
   for (char in names(result)) {
     amount = result[char]
-    res = amount / sum(data[testIndexes,1] == char)
+    res = amount / sum(blocks$testing[,1] == char)
     cat(sprintf("%s => %.3f\n", char, res))
     if(res > best) {
       best = res
@@ -112,5 +112,5 @@ smartKnn = function(data, k = 1, rows = nrow(data), fraction = 0.25) {
   }
 
   cat(sprintf("Worst (%.3f): %s, Best (%.3f): %s\n", worst, worstChar, best, bestChar))
-  sum(data[testIndexes,1] == ans) / length(data[testIndexes,1])
+  sum(blocks$testing[,1] == model) / length(blocks$testing[,1])
 }
