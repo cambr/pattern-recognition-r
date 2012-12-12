@@ -16,18 +16,22 @@ main1 = function() {
 main2 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  model = multinom(formula = lettr ~ ., data = blocks$training, maxit = 200)
-  result = predict(model, blocks$testing, interval = "predict")
-  calcResult(blocks, result)
-  table(blocks$testing[,1], result)
+  for (i in 3:3) {
+    cat(sprintf("\ndecay=%d\n", i))
+    model = multinom(formula = lettr ~ ., data = blocks$training, maxit = 200, decay = i)
+    result = predict(model, blocks$testing, interval = "predict")
+    calcResult(blocks, result)
+    print(table(blocks$testing[,1], result))
+  }
 }
 
 main4 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  model = svm(formula = lettr ~ ., data = blocks$training)
+  model = svm(formula = lettr ~ ., data = blocks$training, cost=12, epsilon=1, kernel="radial")
   result = predict(model, blocks$testing, interval = "predict")
-  table(blocks$testing[,1], result)
+  print(table(blocks$testing[,1], result))
+  calcResult(blocks, result)
 }
 
 main3 = function() {
@@ -36,20 +40,17 @@ main3 = function() {
   model = lda(formula = lettr ~ ., data = blocks$training)
   result = predict(model, blocks$testing)$class
   print(table(blocks$testing[,1], result))
-  print(calcResult(blocks, result))
+  calcResult(blocks, result)
 }
 
 main5 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  for (i in 10:22) {
-    model = nnet(formula = lettr ~ ., data = blocks$training, size = i, decay = i)
+  for (i in 1:4) {
+    model = nnet(formula = lettr ~ ., data = blocks$training, size = 21, decay = i, maxit=300)
     result = predict(model, blocks$testing, type = "class")
-    print("------------")
-    print(i)
-    print(calcResult(blocks, result))
-    cat(sprintf("=====> %d\n", i))
-    print(table(blocks$testing[,1], result))
+    calcResult(blocks, result)
+    cat(sprintf("\n=====> %d\n", i))
   }
 }
 
@@ -112,5 +113,5 @@ calcResult = function(blocks, model) {
   }
 
   cat(sprintf("Worst (%.3f): %s, Best (%.3f): %s\n", worst, worstChar, best, bestChar))
-  sum(blocks$testing[,1] == model) / length(blocks$testing[,1])
+  cat(sprintf("Average hit rate = %.3f", sum(blocks$testing[,1] == model) / length(blocks$testing[,1])))
 }
