@@ -3,13 +3,13 @@
 - Daniel Tell     F120181
 - Linus Oleander  F120180
 
-## Description
+## Model usage
 
-The Letter Recognition problem is the problem of correctly identifying ...
+The model can be used to classify unknown letters.
 
-Each of the 26 letters of the English alphabet were included in 20 different fonts. The letters were then randomly distorted in order to generate 20,000 different cases.16 numerical attributes were generated from this data, and scaled from 0 to 15.
+## Data description
 
-## Attributes
+Each of the 26 letters of the English alphabet were included in 20 different fonts. The letters were then randomly distorted in order to generate 20,000 different cases. 16 numerical attributes were generated from this data and scaled from 0 to 15.
 
 1. lettr - The class
 1. x-box - The position along the x-axis of the centre of the smallest box that contains all activated pixels. 
@@ -83,6 +83,8 @@ Complexity params:
 
 - `k=1`
 
+#### How where the complexity params chosen ?
+
 ### multinom
 
 ```
@@ -123,6 +125,8 @@ Error rate 23.7%
 Complexity params:
 
 - `decay=3`
+
+#### How where the complexity params chosen ?
 
 ### qda
 
@@ -245,6 +249,8 @@ Complexity params:
 - `decay=10`
 - `maxit=300`
 
+#### How where the complexity params chosen ?
+
 ### svm
 
 ```
@@ -287,6 +293,8 @@ Complexity params:
 - `cost=12`
 - `epsilon=1`
 - `kernel=radial`
+
+#### How where the complexity params chosen ?
 
 ## Best classification method
 
