@@ -25,20 +25,20 @@ main2 = function() {
   }
 }
 
-main4 = function() {
-  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
-  blocks = createDataBlocks(data, nrow(data))
-  model = svm(formula = lettr ~ ., data = blocks$training, cost=12, epsilon=1, kernel="radial")
-  result = predict(model, blocks$testing, interval = "predict")
-  print(table(blocks$testing[,1], result))
-  calcResult(blocks, result)
-}
-
 main3 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
   model = lda(formula = lettr ~ ., data = blocks$training)
   result = predict(model, blocks$testing)$class
+  print(table(blocks$testing[,1], result))
+  calcResult(blocks, result)
+}
+
+main4 = function() {
+  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  blocks = createDataBlocks(data, nrow(data))
+  model = svm(formula = lettr ~ ., data = blocks$training, cost=12, epsilon=1, kernel="radial")
+  result = predict(model, blocks$testing, interval = "predict")
   print(table(blocks$testing[,1], result))
   calcResult(blocks, result)
 }
@@ -112,7 +112,7 @@ calcResult = function(blocks, model) {
       worstChar = char
     }
   }
-
+  
   cat(sprintf("Worst (%.3f): %s, Best (%.3f): %s\n", worst, worstChar, best, bestChar))
   cat(sprintf("Average hit rate = %.3f", sum(blocks$testing[,1] == model) / length(blocks$testing[,1])))
 }
