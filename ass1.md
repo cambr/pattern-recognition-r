@@ -29,6 +29,38 @@ Each of the 26 letters of the English alphabet were included in 20 different fon
 1. y-edge - The mean number of edges when searching from bottom to top
 1. yegvx - The sum of the x-values for all edges
 
+## Class distribution
+
+- [letter] - [amount] - [percent of total]
+- A - 789 - 3.95
+- B - 766 - 3.83
+- C - 736 - 3.68
+- D - 805 - 4.03
+- E - 768 - 3.84
+- F - 775 - 3.88
+- G - 773 - 3.87
+- H - 734 - 3.67
+- I - 755 - 3.78
+- J - 747 - 3.74
+- K - 739 - 3.70
+- L - 761 - 3.81
+- M - 792 - 3.96
+- N - 783 - 3.91
+- O - 753 - 3.77
+- P - 803 - 4.01
+- Q - 783 - 3.91
+- R - 758 - 3.79
+- S - 748 - 3.74
+- T - 796 - 3.98
+- U - 813 - 4.06
+- V - 764 - 3.82
+- W - 752 - 3.76
+- X - 787 - 3.94
+- Y - 786 - 3.93
+- Z - 734 - 3.67
+
+`20000` letters in total.
+Most common letter is `D` and least common `Z`.
 
 ## Data selection
 
