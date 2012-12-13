@@ -46,10 +46,11 @@ main3 = function() {
 main5 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  for (i in 1:4) {
-    model = nnet(formula = lettr ~ ., data = blocks$training, size = 21, decay = i, maxit=300)
+  for (i in 10) {
+    model = nnet(formula = lettr ~ ., data = blocks$training, size = 22, decay = i, maxit=300)
     result = predict(model, blocks$testing, type = "class")
     calcResult(blocks, result)
+    print(table(blocks$testing[,1], result))
     cat(sprintf("\n=====> %d\n", i))
   }
 }
