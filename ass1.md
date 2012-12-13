@@ -76,8 +76,6 @@ Which letter is hardest to classify?
 
 ### knn
 
-
-
 ```
     A   B   C   D   E   F   G   H   I   J   K   L   M   N   O   P   Q   R   S   T   U   V   W   X   Y   Z
 A 186   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0
@@ -108,9 +106,6 @@ Y   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
 Z   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   3   0   0   0   0   0   0   0   0 180
 ```
 
-The k nearest neighbour algorithm looks at nearest data points from the training set in order to determine the class of new cases. While running the function with different values, we noticed a negative correlation between the k value and the hit rate. This could be because of the "curse of dimensionality". We have 16 different numerical attributes, so the data space might be so sparse that distant data points have to be considered when trying to predict with high k values. 
-
-
 Hardest letter to classify H (86.5%)  
 Easiest letter to classify W (99.5%)  
 
@@ -121,6 +116,8 @@ Complexity params:
 - `k=1`
 
 #### How where the complexity params chosen ?
+
+The k nearest neighbour algorithm looks at nearest data points from the training set in order to determine the class of new cases. While running the function with different values, we noticed a negative correlation between the k value and the hit rate. This could be because of the *curse of dimensionality*. We have 16 different numerical attributes, so the data space might be so sparse that distant data points have to be considered when trying to predict with high k values. 
 
 ### multinom
 
