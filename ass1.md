@@ -154,6 +154,7 @@ Y   0   0   0   2   0   4   0   1   0   1   0   0   0   0   1   1   8   0   0  1
 Z   0   1   0   1  13   0   0   0   0   6   0   0   0   0   0   0   0   0  12   1   0   0   0   1   0 143
 ```
 
+
 Hardest letter to classify H (46.7%)  
 Easiest letter to classify V (92.3%)  
 
@@ -164,6 +165,9 @@ Complexity params:
 - `decay=3`
 
 #### How where the complexity params chosen ?
+
+Weight decay is a way of penalizing high or low values for the weights in the model. We iterated with values between 1 and 35 and concluded that there seemed to be a global maximum at a weight value of 3. 
+
 
 ### qda
 
