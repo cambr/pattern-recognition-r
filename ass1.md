@@ -5,7 +5,7 @@
 
 ## Data selection
 
-We picked 25% of the data at random for building our model and the rest for testing the model it self. This has been done of all six implementations.
+We picked 25% of the data at random for building our model and the rest for testing the model itself. This has been done of all six implementations.
 
 ## Methods
 
@@ -16,6 +16,8 @@ Which letter is hardest to classify?
  -->
 
 ### knn
+
+
 
 ```
     A   B   C   D   E   F   G   H   I   J   K   L   M   N   O   P   Q   R   S   T   U   V   W   X   Y   Z
@@ -46,6 +48,9 @@ X   0   0   0   1   1   0   0   1   0   0   7   0   0   0   0   0   0   0   0   
 Y   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   2   0   0   0   0 197   0
 Z   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   3   0   0   0   0   0   0   0   0 180
 ```
+
+The k nearest neighbour algorithm looks at nearest data points from the training set in order to determine the class of new cases. While running the function with different values, we noticed a negative correlation between the k value and the hit rate. This could be because of the "curse of dimensionality". We have 16 different numerical attributes, so the data space might be so sparse that distant data points have to be considered when trying to predict with high k values. 
+
 
 Hardest letter to classify H (86.5%)  
 Easiest letter to classify W (99.5%)  
