@@ -64,15 +64,9 @@ Most common letter is `D` and least common `Z`.
 
 ## Data selection
 
-We picked 25% of the data at random for building our model and the rest for testing the model itself. This has been done of all six implementations.
+We picked 75% of the data at random for building our model and the rest for testing the model itself. This has been done for all six implementations.
 
 ## Methods
-
-<!-- For each classification method:
-What are the complexity parameters (if any), and how did you select their values?
-What is the estimated error of the best classifier for this method?
-Which letter is hardest to classify?
- -->
 
 ### knn
 
@@ -201,6 +195,7 @@ Error rate 12.8%
 
 No complexity params where used.
 
+<!--BREAK-->
 ### lda
 
 ```
@@ -281,9 +276,10 @@ Complexity params:
 
 - `size=22`
 - `decay=10`
-- `maxit=300`
 
 #### How where the complexity params chosen ?
+
+Size denotes the amount of units in the hiddden layer.
 
 ### svm
 
