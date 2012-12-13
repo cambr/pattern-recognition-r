@@ -3,6 +3,65 @@
 - Daniel Tell     F120181
 - Linus Oleander  F120180
 
+## Model usage
+
+The model can be used to classify unknown letters.
+
+## Data description
+
+Each of the 26 letters of the English alphabet were included in 20 different fonts. The letters were then randomly distorted in order to generate 20,000 different cases. 16 numerical attributes were generated from this data and scaled from 0 to 15.
+
+1. lettr - The class
+1. x-box - The position along the x-axis of the centre of the smallest box that contains all activated pixels. 
+1. y-box - The position of the aforementioned box, along the y-axis
+1. width - The width of the box
+1. height - Height of box
+1. onpix - The total number of activated pixels
+1. x-bar - Mean position, along x-axis and measured from the center, of activated pixels 
+1. y-bar - Mean position along y-axis
+1. x2-bar - Variance of pixel positions along x-axis
+1. y2-bar - Variance of pixel positions along y-axis
+1. xybar - Mean value of x and y values for each pixel, as measured from the centre
+1. x2ybr - Mean product of x^2 * y 
+1. xy2br - Mean product of x * y^2
+1. x-edge - The mean number of edges - deactivated pixels or image boundary followed by an activated pixel - when searching from left to right
+1. xegvy - The sum of the y-values for all edges
+1. y-edge - The mean number of edges when searching from bottom to top
+1. yegvx - The sum of the x-values for all edges
+
+## Class distribution
+
+- [letter] - [amount] - [percent of total]
+- A - 789 - 3.95
+- B - 766 - 3.83
+- C - 736 - 3.68
+- D - 805 - 4.03
+- E - 768 - 3.84
+- F - 775 - 3.88
+- G - 773 - 3.87
+- H - 734 - 3.67
+- I - 755 - 3.78
+- J - 747 - 3.74
+- K - 739 - 3.70
+- L - 761 - 3.81
+- M - 792 - 3.96
+- N - 783 - 3.91
+- O - 753 - 3.77
+- P - 803 - 4.01
+- Q - 783 - 3.91
+- R - 758 - 3.79
+- S - 748 - 3.74
+- T - 796 - 3.98
+- U - 813 - 4.06
+- V - 764 - 3.82
+- W - 752 - 3.76
+- X - 787 - 3.94
+- Y - 786 - 3.93
+- Z - 734 - 3.67
+
+`20000` letters in total.
+Most common letter is `D` and least common `Z`.
+
 ## Data selection
 
 We picked 25% of the data at random for building our model and the rest for testing the model itself. This has been done of all six implementations.
@@ -61,6 +120,8 @@ Complexity params:
 
 - `k=1`
 
+#### How where the complexity params chosen ?
+
 ### multinom
 
 ```
@@ -101,6 +162,8 @@ Error rate 23.7%
 Complexity params:
 
 - `decay=3`
+
+#### How where the complexity params chosen ?
 
 ### qda
 
@@ -223,6 +286,8 @@ Complexity params:
 - `decay=10`
 - `maxit=300`
 
+#### How where the complexity params chosen ?
+
 ### svm
 
 ```
@@ -265,6 +330,8 @@ Complexity params:
 - `cost=12`
 - `epsilon=1`
 - `kernel=radial`
+
+#### How where the complexity params chosen ?
 
 ## Best classification method
 
