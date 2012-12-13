@@ -3,6 +3,33 @@
 - Daniel Tell     F120181
 - Linus Oleander  F120180
 
+## Description
+
+The Letter Recognition problem is the problem of correctly identifying ...
+
+Each of the 26 letters of the English alphabet were included in 20 different fonts. The letters were then randomly distorted in order to generate 20,000 different cases.16 numerical attributes were generated from this data, and scaled from 0 to 15.
+
+## Attributes
+
+1. lettr - The class
+1. x-box - The position along the x-axis of the centre of the smallest box that contains all activated pixels. 
+1. y-box - The position of the aforementioned box, along the y-axis
+1. width - The width of the box
+1. height - Height of box
+1. onpix - The total number of activated pixels
+1. x-bar - Mean position, along x-axis and measured from the center, of activated pixels 
+1. y-bar - Mean position along y-axis
+1. x2-bar - Variance of pixel positions along x-axis
+1. y2-bar - Variance of pixel positions along y-axis
+1. xybar - Mean value of x and y values for each pixel, as measured from the centre
+1. x2ybr - Mean product of x^2 * y 
+1. xy2br - Mean product of x * y^2
+1. x-edge - The mean number of edges - deactivated pixels or image boundary followed by an activated pixel - when searching from left to right
+1. xegvy - The sum of the y-values for all edges
+1. y-edge - The mean number of edges when searching from bottom to top
+1. yegvx - The sum of the x-values for all edges
+
+
 ## Data selection
 
 We picked 25% of the data at random for building our model and the rest for testing the model it self. This has been done of all six implementations.
