@@ -199,7 +199,6 @@ Error rate 12.8%
 
 No complexity params where used.
 
-<!--BREAK-->
 ### lda
 
 ```
