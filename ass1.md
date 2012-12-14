@@ -237,6 +237,9 @@ A higher `decay` value results in a slower build time, but doesn't effect the ti
 predict(model, testData, ...)
 ```
 
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
 ### qda
 
 ```
@@ -276,6 +279,7 @@ Error rate 12.8%
 
 No complexity params where used.
 
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 ### lda
 
 ```
@@ -315,6 +319,7 @@ Error rate 30.8%
 
 No complexity params where used.
 
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 ### nnet
 
 ```
