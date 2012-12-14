@@ -79,23 +79,52 @@ main3 = function() {
 main4 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  model = svm(formula = lettr ~ ., data = blocks$training, cost=12, epsilon=1, kernel="radial")
-  result = predict(model, blocks$testing, interval = "predict")
-  print(table(blocks$testing[,1], result))
-  calcResult(blocks, result)
+
+    for (i in 15:20) {
+    cat(sprintf("\nepsilon=%f\n", i))
+    print("===========")
+    print("Time to exec #svm")
+
+    method1 = function(){
+      model = svm(formula = lettr ~ ., data = blocks$training, cost=i, epsilon=1, kernel="radial")
+      assign("model", model, envir = .GlobalEnv)
+    }
+
+    print(system.time(method1()))
+    print("===========")
+
+    print("===========")
+    print("Time to exec #predict")
+
+    method2 = function(){
+      result = predict(model, blocks$testing, interval = "predict")
+      assign("result", result, envir = .GlobalEnv)
+    }
+
+    print(system.time(method2()))
+    print("===========")
+
+    calcResult(blocks, result)
+    # print(table(blocks$testing[,1], result))
+    print("------------")
+  }
+
+  # result = predict(model, blocks$testing, interval = "predict")
+  # print(table(blocks$testing[,1], result))
+  # calcResult(blocks, result)
 }
 
-main5 = function() {
-  data = read.csv("data.txt", header = TRUE)
+main5 = function(file) {
+  data = read.csv(file, header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  for (i in 8:12) {
+  for (i in 11:12) {
     cat(sprintf("\n=====> %d\n", i))
     
     print("===========")
     print("Time to exec #multinom")
     
     method1 = function(){
-      model = nnet(formula = lettr ~ ., data = blocks$training, size = 22, decay = i, maxit=300)
+      model = nnet(formula = lettr ~ ., data = blocks$training, size = 15, decay = i, maxit=300)
       assign("model", model, envir = .GlobalEnv)
     }
     
