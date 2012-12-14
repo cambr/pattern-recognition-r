@@ -113,18 +113,39 @@ Complexity params:
 
 The k nearest neighbour algorithm looks at nearest data points from the training set in order to determine the class of new cases. While running the function with different values, we noticed a negative correlation between the k value and the hit rate. This could be because of the *curse of dimensionality*. We have 16 different numerical attributes, so the data space might be so sparse that distant data points have to be considered when trying to predict with high k values. 
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+#### Benchmark results
+
+- `k=1`
+
+Time to run and use: `2.467` seconds.
+Error rate: 4.4%
+
+---
+
+- `k=2`
+
+Time to run and use: `2.313` seconds.
+Error rate: 4.8%
+
+---
+
+- `k=5`
+
+Time to run and use: `2.218` seconds.
+Error rate: 5.5%
+
+
+---
+
+- `k=60`
+
+Time to run and use: `2.616` seconds.
+Error rate: 13.7%
+
+#### Conclusion
+
+A lower k value, in our case `k=1`, results in a better and more precis model. The execution time does not relay on the value `k`, which can be seen in the resuls above.
+
 ### multinom
 
 ```
@@ -156,7 +177,6 @@ X   0   0   0   6   9   0   4   0   2   0   0   1   0   0   0   0   4   3   2   
 Y   0   0   0   2   0   4   0   1   0   1   0   0   0   0   1   1   8   0   0  14   1  11   0   1 161   0
 Z   0   1   0   1  13   0   0   0   0   6   0   0   0   0   0   0   0   0  12   1   0   0   0   1   0 143
 ```
-
 
 Hardest letter to classify H (46.7%)  
 Easiest letter to classify V (92.3%)  
@@ -207,32 +227,15 @@ Error rate: 23.2%
 
 Weight decay is a way of penalizing high or low values for the weights in the model. We iterated with values between 1 and 35 and concluded that there seemed to be a global maximum at a weight value of 3. 
 
+#### Conclusion
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+A higher `decay` value results in a slower build time, but doesn't effect the time it takes to *use the model.
+
+* use
+
+```
+predict(model, testData, ...)
+```
 
 ### qda
 
