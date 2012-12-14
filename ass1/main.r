@@ -16,12 +16,33 @@ main1 = function() {
 main2 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  for (i in 3:3) {
+  for (i in 1:5) {
     cat(sprintf("\ndecay=%d\n", i))
-    model = multinom(formula = lettr ~ ., data = blocks$training, maxit = 200, decay = i)
-    result = predict(model, blocks$testing, interval = "predict")
+    print("===========")
+    print("Time to exec #multinom")
+
+    method1 = function(){
+      model = multinom(formula = lettr ~ ., data = blocks$training, maxit = 500, decay = i)
+      assign("model", model, envir = .GlobalEnv)
+    }
+
+    print(system.time(method1()))
+    print("===========")
+
+    print("===========")
+    print("Time to exec #predict")
+
+    method2 = function(){
+      result = predict(model, blocks$testing, interval = "predict")
+      assign("result", result, envir = .GlobalEnv)
+    }
+
+    print(system.time(method2()))
+    print("===========")
+
     calcResult(blocks, result)
-    print(table(blocks$testing[,1], result))
+    # print(table(blocks$testing[,1], result))
+    print("------------")
   }
 }
 
@@ -46,12 +67,11 @@ main4 = function() {
 main5 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  for (i in 10) {
+  for (i in 8:12) {
+    cat(sprintf("\n=====> %d\n", i))
     model = nnet(formula = lettr ~ ., data = blocks$training, size = 22, decay = i, maxit=300)
     result = predict(model, blocks$testing, type = "class")
     calcResult(blocks, result)
-    print(table(blocks$testing[,1], result))
-    cat(sprintf("\n=====> %d\n", i))
   }
 }
 
@@ -112,7 +132,7 @@ calcResult = function(blocks, model) {
       worstChar = char
     }
   }
-  
-  cat(sprintf("Worst (%.3f): %s, Best (%.3f): %s\n", worst, worstChar, best, bestChar))
-  cat(sprintf("Average hit rate = %.3f", sum(blocks$testing[,1] == model) / length(blocks$testing[,1])))
+
+  # cat(sprintf("Worst (%.3f): %s, Best (%.3f): %s\n", worst, worstChar, best, bestChar))
+  cat(sprintf("Average hit rate = %.3f\n", sum(blocks$testing[,1] == model) / length(blocks$testing[,1])))
 }
