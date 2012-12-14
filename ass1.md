@@ -359,7 +359,7 @@ Complexity params:
 
 #### How where the complexity params chosen?
 
-We used brute force to find the best combination. We tried to find the global maxima by iterating over a large span for each param.
+We used brute force to find the best combination. We tried to find the global maximum by iterating over a large span for each param.
 
 #### Benchmark results
 
@@ -689,10 +689,10 @@ Time to run: `32.814` seconds.
 Time to use: `4.135` seconds.  
 Error rate: 3.0%
 
-#### How where the complexity params chosen?
+#### How were the complexity params chosen?
 
 We used the same technique as we did for the `nnet` method.
 
 ## Best classification method
 
-The `svm` method with `cost=12`, `epsilon=1`, `kernel=radial` gives the best result. On average `svm` predicts `97.1%` of the testing data correctly.
+The `svm` method with `cost=12`, `epsilon=1`, `kernel=radial` gives the best result. On average `svm` predicts `97.1%` of the testing data correctly. This method, however, also has a significantly longer execution time. It seems like a good choice for this data set if you only intend to run it a few times. Otherwise, k nearest neighbour might be better suited.

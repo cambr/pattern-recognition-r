@@ -79,7 +79,6 @@ main3 = function() {
 main4 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-
     for (i in 15:20) {
     cat(sprintf("\nepsilon=%f\n", i))
     print("===========")
