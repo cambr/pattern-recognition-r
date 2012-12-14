@@ -113,6 +113,18 @@ Complexity params:
 
 The k nearest neighbour algorithm looks at nearest data points from the training set in order to determine the class of new cases. While running the function with different values, we noticed a negative correlation between the k value and the hit rate. This could be because of the *curse of dimensionality*. We have 16 different numerical attributes, so the data space might be so sparse that distant data points have to be considered when trying to predict with high k values. 
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 ### multinom
 
 ```
@@ -149,16 +161,78 @@ Z   0   1   0   1  13   0   0   0   0   6   0   0   0   0   0   0   0   0  12   
 Hardest letter to classify H (46.7%)  
 Easiest letter to classify V (92.3%)  
 
-Error rate 23.7%
+Error rate 22.9%
 
 Complexity params:
 
+- `decay=1`
+
+#### Benchmark results
+
+- `maxit=500`
+- `decay=0`
+
+Time to run: `103.752` seconds.
+Time to use: `0.045` seconds.
+Error rate: 23.2%
+
+---
+
+- `maxit=500`
+- `decay=1`
+
+Time to run: `106.653` seconds.
+Time to use: `0.046` seconds.
+Error rate: 22.9%
+
+---
+
+- `maxit=500`
+- `decay=2`
+
+Time to run: `109.231` seconds.
+Time to use: `0.044` seconds.
+Error rate: 23.0%
+
+---
+
+- `maxit=500`
 - `decay=3`
+
+Time to run: `125.131` seconds.
+Time to use: `0.046` seconds.
+Error rate: 23.2%
 
 #### How where the complexity params chosen ?
 
 Weight decay is a way of penalizing high or low values for the weights in the model. We iterated with values between 1 and 35 and concluded that there seemed to be a global maximum at a weight value of 3. 
 
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 ### qda
 
