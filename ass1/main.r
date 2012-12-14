@@ -14,9 +14,9 @@ main1 = function() {
 }
 
 main2 = function() {
-  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  data = read.csv("data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  for (i in 1:5) {
+  for (i in 6:10) {
     cat(sprintf("\ndecay=%d\n", i))
     print("===========")
     print("Time to exec #multinom")
@@ -65,13 +65,37 @@ main4 = function() {
 }
 
 main5 = function() {
-  data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
+  data = read.csv("data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
   for (i in 8:12) {
     cat(sprintf("\n=====> %d\n", i))
-    model = nnet(formula = lettr ~ ., data = blocks$training, size = 22, decay = i, maxit=300)
-    result = predict(model, blocks$testing, type = "class")
+    
+    print("===========")
+    print("Time to exec #multinom")
+    
+    method1 = function(){
+      model = nnet(formula = lettr ~ ., data = blocks$training, size = 22, decay = i, maxit=300)
+      assign("model", model, envir = .GlobalEnv)
+    }
+    
+    print(system.time(method1()))
+    print("===========")
+    
+    print("===========")
+    print("Time to exec #predict")
+    
+    method2 = function(){
+      result = predict(model, blocks$testing, type = "class")
+      assign("result", result, envir = .GlobalEnv)
+    }
+    
+    
+    print(system.time(method2()))
+    print("===========")
+    
     calcResult(blocks, result)
+    # print(table(blocks$testing[,1], result))
+    print("------------")
   }
 }
 
