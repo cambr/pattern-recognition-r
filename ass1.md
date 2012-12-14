@@ -531,15 +531,37 @@ We used the same technique as we did for the `nnet` method.
 
 #### Benchmark results
 
-<!-- - `cost=10`
+- `cost=10`
+- `epsilon=0`
+- `kernel=radial`
+
+Time to run: `34.993` seconds.  
+Time to use: `4.509` seconds.  
+Error rate: 3.0%
+
+---
+
+- `cost=10`
 - `epsilon=1`
 - `kernel=radial`
 
-Time to run and use: `2.616` seconds.  
-Error rate: 13.7%
+Time to run: `34.136` seconds.  
+Time to use: `4.456` seconds.  
+Error rate: 3.0%
 
---- 
--->
+---
+
+- `cost=10`
+- `epsilon=2`
+- `kernel=radial`
+
+Time to run: `33.127` seconds.  
+Time to use: `4.526` seconds.  
+Error rate: 3.0%
+
+---
+
+
 
 #### How where the complexity params chosen ?
 
