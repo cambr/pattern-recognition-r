@@ -109,7 +109,7 @@ Complexity params:
 
 - `k=1`
 
-#### How where the complexity params chosen ?
+#### How where the complexity params chosen?
 
 The k nearest neighbour algorithm looks at nearest data points from the training set in order to determine the class of new cases. While running the function with different values, we noticed a negative correlation between the k value and the hit rate. This could be because of the *curse of dimensionality*. We have 16 different numerical attributes, so the data space might be so sparse that distant data points have to be considered when trying to predict with high k values. 
 
@@ -223,7 +223,7 @@ Time to run: `125.131` seconds.
 Time to use: `0.046` seconds.  
 Error rate: 23.2%  
 
-#### How where the complexity params chosen ?
+#### How where the complexity params chosen?
 
 Weight decay is a way of penalizing high or low values for the weights in the model. We iterated with values between 1 and 35 and concluded that there seemed to be a global maximum at a weight value of 3. 
 
@@ -357,7 +357,7 @@ Complexity params:
 - `size=22`
 - `decay=11`
 
-#### How where the complexity params chosen ?
+#### How where the complexity params chosen?
 
 We used brute force to find the best combination. We tried to find the global maximum by iterating over a large span for each param.
 
@@ -532,39 +532,164 @@ We used the same technique as we did for the `nnet` method.
 #### Benchmark results
 
 - `cost=10`
-- `epsilon=0`
+- `epsilon=0.0`
 - `kernel=radial`
 
-Time to run: `34.993` seconds.  
-Time to use: `4.509` seconds.  
-Error rate: 3.0%
+Time to run: `34.963` seconds.  
+Time to use: `4.706` seconds.  
+Error rate: 2.9%
 
 ---
 
 - `cost=10`
-- `epsilon=1`
+- `epsilon=0.2`
 - `kernel=radial`
 
-Time to run: `34.136` seconds.  
-Time to use: `4.456` seconds.  
-Error rate: 3.0%
+Time to run: `35.808` seconds.  
+Time to use: `4.818` seconds.  
+Error rate: 2.9%
 
 ---
 
 - `cost=10`
-- `epsilon=2`
+- `epsilon=0.4`
 - `kernel=radial`
 
-Time to run: `33.127` seconds.  
-Time to use: `4.526` seconds.  
+Time to run: `34.435` seconds.  
+Time to use: `4.393` seconds.  
+Error rate: 2.9%
+
+---
+
+- `cost=10`
+- `epsilon=0.7`
+- `kernel=radial`
+
+Time to run: `33.239` seconds.  
+Time to use: `4.494` seconds.  
+Error rate: 2.9%
+
+---
+
+- `cost=10`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `32.253` seconds.  
+Time to use: `4.692` seconds.  
+Error rate: 2.9%
+
+---
+
+- `cost=9`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `33.762` seconds.  
+Time to use: `4.562` seconds.  
+Error rate: 3.1%
+
+---
+
+- `cost=10`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `32.760` seconds.  
+Time to use: `4.169` seconds.  
+Error rate: 3.1%
+
+---
+
+- `cost=11`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `32.925` seconds.  
+Time to use: `4.222` seconds.  
+Error rate: 3.1%
+
+---
+
+- `cost=12`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `31.883` seconds.  
+Time to use: `4.207` seconds.  
+Error rate: 2.8%
+
+---
+
+- `cost=13`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `32.081` seconds.  
+Time to use: `4.510` seconds.  
+Error rate: 2.8%
+
+---
+
+- `cost=14`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `32.920` seconds.  
+Time to use: `5.041` seconds.  
+Error rate: 2.8%
+
+---
+
+- `cost=15`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `37.2968` seconds.  
+Time to use: `4.489` seconds.  
+Error rate: 2.9%
+
+---
+
+- `cost=16`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `35.168` seconds.  
+Time to use: `4.248` seconds.  
 Error rate: 3.0%
 
 ---
 
+- `cost=17`
+- `epsilon=1.0`
+- `kernel=radial`
 
+Time to run: `32.353` seconds.  
+Time to use: `4.393` seconds.  
+Error rate: 3.0%
 
+---
 
-#### How were the complexity params chosen ?
+- `cost=18`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `31.690` seconds.  
+Time to use: `4.040` seconds.  
+Error rate: 3.0%
+
+---
+
+- `cost=19`
+- `epsilon=1.0`
+- `kernel=radial`
+
+Time to run: `32.814` seconds.  
+Time to use: `4.135` seconds.  
+Error rate: 3.0%
+
+#### How were the complexity params chosen?
 
 We used the same technique as we did for the `nnet` method.
 
