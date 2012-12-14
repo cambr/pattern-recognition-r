@@ -350,16 +350,137 @@ Z   0   0   0   0  12   1   0   0   1   0   0   0   0   0   0   0   1   0  28   
 Hardest letter to classify G (60.0%)  
 Easiest letter to classify W (89.6%)  
 
-Error rate 24.0%
+Error rate 19.5%
 
 Complexity params:
 
 - `size=22`
-- `decay=10`
+- `decay=11`
 
 #### How where the complexity params chosen ?
 
-Size denotes the amount of units in the hiddden layer.
+We used brute force to find the best combination. We tried to find the global maxima by iterating over a large span for each param.
+
+#### Benchmark results
+
+- `size=22`
+- `decay=8`
+
+Time to run: `207.906` seconds.  
+Time to use: `0.091` seconds.  
+Error rate: 23.3%  
+
+--- 
+
+- `size=22`
+- `decay=9`
+
+Time to run: `178.885` seconds.  
+Time to use: `0.048` seconds.  
+Error rate: 21.1%  
+
+--- 
+
+- `size=22`
+- `decay=10`
+
+Time to run: `142.829` seconds.  
+Time to use: `0.056` seconds.  
+Error rate: 20.4%  
+
+--- 
+
+- `size=22`
+- `decay=11`
+
+Time to run: `153.440` seconds.  
+Time to use: `0.049` seconds.  
+Error rate: 19.5%  
+
+--- 
+
+- `size=22`
+- `decay=12`
+
+Time to run: `150.814` seconds.  
+Time to use: `0.052` seconds.  
+Error rate: 19.9%
+
+---
+
+- `size=22`
+- `decay=13`
+
+Time to run: `165.992` seconds.  
+Time to use: `0.052` seconds.  
+Error rate: 22.8%
+
+---
+
+- `size=22`
+- `decay=14`
+
+Time to run: `143.739` seconds.  
+Time to use: `0.048` seconds.  
+Error rate: 23.6%
+
+---
+
+- `size=22`
+- `decay=15`
+
+Time to run: `144.457` seconds.  
+Time to use: `0.050` seconds.  
+Error rate: 26.6%
+
+---
+
+- `size=22`
+- `decay=16`
+
+Time to run: `143.988` seconds.  
+Time to use: `0.048` seconds.  
+Error rate: 27.0%
+
+---
+
+- `size=15`
+- `decay=9`
+
+Time to run: `109.825` seconds.  
+Time to use: `0.044` seconds.  
+Error rate: 24.0%
+
+---
+
+- `size=15`
+- `decay=10`
+
+Time to run: `116.584` seconds.  
+Time to use: `0.043` seconds.  
+Error rate: 24.7%
+
+---
+
+- `size=15`
+- `decay=12`
+
+Time to run: `124.040` seconds.  
+Time to use: `0.043` seconds.  
+Error rate: 26.2%
+
+---
+
+- `size=15`
+- `decay=11`
+
+Time to run: `134.863` seconds.  
+Time to use: `0.052` seconds.  
+Error rate: 26.1%
+
+#### Conclusion
+
+A lower `decay` value results in faster build time, the same goes for the `size` param.
 
 ### svm
 
@@ -404,8 +525,9 @@ Complexity params:
 - `epsilon=1`
 - `kernel=radial`
 
-#### How where the complexity params chosen ?
+#### How where the complexity params chosen?
 
+We used the same technique as we did for the `nnet` method.
 
 #### Benchmark results
 
@@ -418,6 +540,10 @@ Error rate: 13.7%
 
 --- 
 -->
+
+#### How where the complexity params chosen ?
+
+We used the same technique as we did for the `nnet` method.
 
 ## Best classification method
 
