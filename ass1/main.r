@@ -79,7 +79,7 @@ main3 = function() {
 main4 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  model = svm(formula = lettr ~ ., data = blocks$training, cost=12, epsilon=1, kernel="radial")
+  model = svm(formula = lettr ~ ., data = blocks$training, cost=12, epsilon=0.5, kernel="radial")
   result = predict(model, blocks$testing, interval = "predict")
   print(table(blocks$testing[,1], result))
   calcResult(blocks, result)
