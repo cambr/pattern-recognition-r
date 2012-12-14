@@ -117,21 +117,21 @@ The k nearest neighbour algorithm looks at nearest data points from the training
 
 - `k=1`
 
-Time to run and use: `2.467` seconds.
+Time to run and use: `2.467` seconds.  
 Error rate: 4.4%
 
 ---
 
 - `k=2`
 
-Time to run and use: `2.313` seconds.
+Time to run and use: `2.313` seconds.  
 Error rate: 4.8%
 
 ---
 
 - `k=5`
 
-Time to run and use: `2.218` seconds.
+Time to run and use: `2.218` seconds.  
 Error rate: 5.5%
 
 
@@ -139,7 +139,7 @@ Error rate: 5.5%
 
 - `k=60`
 
-Time to run and use: `2.616` seconds.
+Time to run and use: `2.616` seconds.  
 Error rate: 13.7%
 
 #### Conclusion
@@ -192,36 +192,36 @@ Complexity params:
 - `maxit=500`
 - `decay=0`
 
-Time to run: `103.752` seconds.
-Time to use: `0.045` seconds.
-Error rate: 23.2%
+Time to run: `103.752` seconds.  
+Time to use: `0.045` seconds.  
+Error rate: 23.2%  
 
 ---
 
 - `maxit=500`
 - `decay=1`
 
-Time to run: `106.653` seconds.
-Time to use: `0.046` seconds.
-Error rate: 22.9%
+Time to run: `106.653` seconds.  
+Time to use: `0.046` seconds.  
+Error rate: 22.9%  
 
 ---
 
 - `maxit=500`
 - `decay=2`
 
-Time to run: `109.231` seconds.
-Time to use: `0.044` seconds.
-Error rate: 23.0%
+Time to run: `109.231` seconds.  
+Time to use: `0.044` seconds.  
+Error rate: 23.0%  
 
 ---
 
 - `maxit=500`
 - `decay=3`
 
-Time to run: `125.131` seconds.
-Time to use: `0.046` seconds.
-Error rate: 23.2%
+Time to run: `125.131` seconds.  
+Time to use: `0.046` seconds.  
+Error rate: 23.2%  
 
 #### How where the complexity params chosen ?
 
@@ -405,6 +405,19 @@ Complexity params:
 - `kernel=radial`
 
 #### How where the complexity params chosen ?
+
+
+#### Benchmark results
+
+<!-- - `cost=10`
+- `epsilon=1`
+- `kernel=radial`
+
+Time to run and use: `2.616` seconds.  
+Error rate: 13.7%
+
+--- 
+-->
 
 ## Best classification method
 
