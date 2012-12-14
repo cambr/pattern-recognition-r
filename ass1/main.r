@@ -6,17 +6,38 @@ library(class)
 main1 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  for (k in 1:1) {
-    model = knn(blocks$training[,-1], blocks$testing[,-1], blocks$training[,1], k)
+  for (k in c(5,60)) {
+    cat(sprintf("\nk=%d\n", k))
+    print("===========")
+    print("Time to exec #knn")
+
+    method1 = function(){
+      model = knn(blocks$training[,-1], blocks$testing[,-1], blocks$training[,1], k)
+      assign("model", model, envir = .GlobalEnv)
+    }
+
+    print(system.time(method1()))
+    print("===========")
+
     calcResult(blocks, model)
-    print(table(blocks$testing[,1], model))
+    # print(table(blocks$testing[,1], result))
+    print("------------")
   }
+
+  # for (k in 1:1) {
+  #   model = knn(blocks$training[,-1], blocks$testing[,-1], blocks$training[,1], k)
+
+
+
+  #   calcResult(blocks, model)
+  #   print(table(blocks$testing[,1], model))
+  # }
 }
 
 main2 = function() {
   data = read.csv("/Users/linus/Documents/Projekt/pattern-recognition-r/ass1/data.txt", header = TRUE)
   blocks = createDataBlocks(data, nrow(data))
-  for (i in 1:5) {
+  for (i in 0) {
     cat(sprintf("\ndecay=%d\n", i))
     print("===========")
     print("Time to exec #multinom")
